@@ -11,22 +11,6 @@ const app = express();
 // Apply middleware
 app.use(express.json());
 
-// Define routes
-app.get('/', (req, res) => {
-    res.json('Welcome home');
-})
-app.post('/login', (req, res) => {
-    res.json('Login successful');
-})
-
-app.patch('/profile', (req, res) => {
-    res.json('Profile picture updated successfully');
-})
-
-app.delete('/delete', (req, res) => {
-    res.json('Account deleted successfully');
-})
-
 // Use routes
 app.use(reciperRouter);
 
