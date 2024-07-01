@@ -16,33 +16,40 @@ export const getRecipes = async (req, res) => {
 // Post Recipe
 export const postRecipes = async (req, res, next) => {
     try {
-      // Add recipe to database
-      const newRecipe = await RecipeModel.create(req.body);
-      // return response
-      res.json(newRecipe);
-    } catch (error) {
-     next(error);
-    }
- }
-
-// Patch Recipe
-export const patchRecipe = (req, res) => {
-    res.json(`Recipe with ${req.params.id} updated`);
-}
-
-// Delete Recipe
-export const deleteRecipe = async (req, res, next) => {
-    try {
-        // Delete recipe by id
-        const deletedRecipe = await RecipeModel.findByIdAndDelete(req.params.id);
-        // Return response
-        res.json(deletedRecipe);
+        // Add recipe to database
+        const newRecipe = await RecipeModel.create(req.body);
+        // return response
+        res.json(newRecipe);
     } catch (error) {
         next(error);
     }
 }
 
-// Get Recipe
-export const getRecipe = (req, res) => {
-    res.json(`Recipe with id ${req.params.id} displayed successfully`);
+// Patch Recipe
+export const patchRecipe = async (req, res, next) => {
+    try {
+        // Update recipe by id
+        const updateRecipe = await RecipeModel.findByIdAndUpdate(req.params.id, req.body)
+        //    Return response
+        res.json(updateRecipe);
+    }catch (error) {
+        next(error)
+    }
 }
+
+    // Delete Recipe
+    export const deleteRecipe = async (req, res, next) => {
+        try {
+            // Delete recipe by id
+            const deletedRecipe = await RecipeModel.findByIdAndDelete(req.params.id);
+            // Return response
+            res.json(deletedRecipe);
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    // Get Recipe
+    export const getRecipe = (req, res) => {
+        res.json(`Recipe with id ${req.params.id} displayed successfully`);
+    }
