@@ -8,8 +8,8 @@ export const getRecipes = async (req, res, next) => {
         const { limit, skip, filter } = req.query;
         // Get all recipes from database
         const allRecipes = await RecipeModel
-            .find(filter)
-            .limit(limit)
+            .find(JSON.parse(filter))
+            .limit(JSON.parse(limit))
             .skip(skip);
         // Return all recipes as response
         res.json(allRecipes);

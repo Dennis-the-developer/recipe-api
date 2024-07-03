@@ -26,7 +26,7 @@ app.use(cors());
 app.use(reciperRouter);
 app.use(categoryRouter);
 expressOasGenerator.handleRequests();
-app.use((req, res) => res.redirect('/api-docs/'));
+app.use((req,res) => res.redirect('/api-docs/'));
 
 // Listen for incomming requests
 const port = process.env.PORT || 3000;
